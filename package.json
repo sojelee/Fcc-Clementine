@@ -1,0 +1,29 @@
+{
+  "name": "clementinejs",
+  "version": "1.0.0",
+  "description": "Clementine Js Sample Application for express, mongodb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mongodb",
+    "nodejs",
+    "expressjs",
+    "css",
+    "html"
+  ],
+  "author": "Joseph C Myalla",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.1",
+    "nodemon": "^1.14.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.4.0"
+  }
+}
