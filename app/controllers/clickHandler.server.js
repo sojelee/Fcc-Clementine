@@ -1,43 +1,40 @@
 'use strict';
-var Click = require('../../models/click');
+var Users = require('../../models/user');
 class clickHandler{
    getClicks(req,res){
-    Click.findOne({},(err,clickdocs)=>{
+    Users.findOne({'github.id':req.user.github.id},{'_id':false},(err,clickdocs)=>{
         if(err) throw err;
         if(clickdocs){
-            res.json(clickdocs)
-        }else{
-         Click.create({clicks:0},(err,clickdocs)=>{
-             if(err) throw err;
-             res.json(clickdocs);
-         });
+            
+            res.json(clickdocs.nbrClicks);
         }
      });
    }
 
    addClick(req,res){
    var custInc=0;
-     Click.findOne({},(err,clickdocs)=>{
+     Users.findOne({'github.id':req.user.github.id},(err,clickdocs)=>{
         if(err) throw err;
         if(clickdocs){
-            custInc=JSON.parse((clickdocs).clicks);
-            custInc++;
+            custInc=JSON.parse((clickdocs.nbrClicks.clicks));
+            custInc=custInc+1;
+           
         }
 
-                    var updateClicks = {clicks:custInc}
-            Click.update({},updateClicks,{new:true},(err,clickdocs)=>{
+            var updateClicks = {nbrClicks:{clicks:custInc}};
+            Users.update({'github.id': req.user.github.id},updateClicks,{new:true},(err,clickdocs)=>{
                 if(err) throw err;
-                res.json(clickdocs);      
+                res.json(clickdocs.nbrClicks);      
             });
      });
   
 }
 
 resetClick(req,res){
- var updateClicks = {clicks:0}
- Click.update({},updateClicks,(err,clickdocs)=>{
+ var updateClicks = {nbrClicks:{clicks:0}};
+ Users.update({'github.id':req.user.github.id},updateClicks,(err,clickdocs)=>{
      if(err) throw err;
-     res.json(clickdocs);
+     res.json(clickdocs.nbrClicks);
  });
 }
    
