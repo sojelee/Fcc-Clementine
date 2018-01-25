@@ -2,8 +2,7 @@
 var Click = require('../../models/click');
 class clickHandler{
    getClicks(req,res){
-     var clickProjection = {_id:0}
-     Click.findOne({},(err,clickdocs)=>{
+    Click.findOne({},(err,clickdocs)=>{
         if(err) throw err;
         if(clickdocs){
             res.json(clickdocs)
