@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var clickSchema = new mongoose.Schema({
-    clicks:String
+    clicks:Number
 
 });
 module.exports = mongoose.model('Click', clickSchema);
